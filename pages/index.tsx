@@ -1,14 +1,28 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
+import { NextPage } from 'next'
 
-const inter = Inter({ subsets: ['latin'] })
+const TODOS = [
+  { id: 1, text: 'foo', isDone: false },
+  { id: 2, text: 'bar', isDone: true },
+]
 
-export default function Home() {
+const Home: NextPage = () => {
   return (
-    <>
-      <p></p>{' '}
-    </>
+    <div>
+      <h3>TODO一覧</h3>
+      {TODOS.map((todo) => (
+        <div key={todo.id}>
+          <label style={{ fontSize: '2rem' }}>
+            <input
+              type='checkbox'
+              checked={todo.isDone}
+              style={{ width: '1.5rem', height: '1.5rem' }}
+            />
+            {todo.text}
+          </label>
+        </div>
+      ))}
+    </div>
   )
 }
+
+export default Home
